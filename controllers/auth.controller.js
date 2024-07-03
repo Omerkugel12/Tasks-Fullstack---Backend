@@ -39,31 +39,32 @@ async function register(req, res) {
   }
 }
 
-// async function login(req, res) {
-//   try {
-//     const { username, password } = req.body;
+async function login(req, res) {
+  try {
+    const { username, password } = req.body;
 
-//     const user = await User.findOne({ username });
-//     if (!user) {
-//       return res.status(401).json({ error: "Authentication failed" });
-//     }
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(401).json({ error: "Authentication failed" });
+    }
 
-//     const isPasswordMatch = await bcrypt.compare(password, user.password);
-//     if (!isPasswordMatch) {
-//       return res.status(401).json({ error: "Authentication failed" });
-//     }
-//     console.log(password, user.password);
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      return res.status(401).json({ error: "Authentication failed" });
+    }
+    console.log(password, user.password);
 
-//     // Generate JWT token containing user id
-//     const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
-//       expiresIn: "1h",
-//     });
+    // Generate JWT token containing user id
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
-//     // Send token in response to the client, not the user object!
-//     res.status(200).json({ token });
-//   } catch (error) {
-//     res.status(500).json({ error: "Login failed" });
-//   }
-// }
+    // Send token in response to the client, not the user object!
+    res.status(200).json({ token });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Login failed" });
+  }
+}
 
 module.exports = { register, login };
