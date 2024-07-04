@@ -8,7 +8,7 @@ const SALT_ROUNDS = 10;
 
 async function register(req, res) {
   try {
-    const { username, password, email, firstName, lastName } = req.body;
+    const { username, password, ...rest } = req.body;
 
     const existingUser = await User.findOne({ username }); // Use findOne to check if the user exists
     if (existingUser) {
@@ -16,13 +16,10 @@ async function register(req, res) {
     }
 
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS); // Hash password
-    console.log(username, password);
     const user = new User({
       username,
-      firstName,
-      lastName,
-      email,
       password: hashedPassword,
+      ...rest,
     }); // Create new user object
     await user.save(); // Save user to database
 
