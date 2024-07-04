@@ -8,12 +8,12 @@ async function getUserById(req, res) {
   } catch (error) {
     if (error.name === "CastError") {
       console.log(
-        `user.controller, getUserById. User not found with id: ${userId}`
+        `user.controller, getUserById. User not found with id: ${req.userId}`
       );
       return res.status(404).json({ message: "User not found" });
     }
     console.log(
-      `user.controller, getUserById. Error while getting user with id: ${userId}`,
+      `user.controller, getUserById. Error while getting user with id: ${req.userId}`,
       error.name
     );
     res.status(500).json({ message: error.mesagge });

@@ -27,7 +27,7 @@ async function register(req, res) {
     await user.save(); // Save user to database
 
     // Generate JWT token containing user id
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+    const token = jwt.sign({ userId: user._id }, "mySecret", {
       expiresIn: "1h",
     });
 
@@ -55,7 +55,7 @@ async function login(req, res) {
     // console.log(password, user.password);
 
     // Generate JWT token containing user id
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+    const token = jwt.sign({ userId: user._id }, "mySecret", {
       expiresIn: "1h",
     });
 
