@@ -52,7 +52,7 @@ async function login(req, res) {
     if (!isPasswordMatch) {
       return res.status(401).json({ error: "Authentication failed" });
     }
-    console.log(password, user.password);
+    // console.log(password, user.password);
 
     // Generate JWT token containing user id
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
