@@ -77,7 +77,7 @@ async function deleteTask(req, res) {
   } catch (err) {
     console.log(err);
     console.log(
-      `tasks-controller, deleteTask. Error while deleting task with id: ${id}`
+      `tasks-controller, deleteTask. Error while deleting task with id: ${taskId}`
     );
     res.status(500).json({ message: err.message });
   }
