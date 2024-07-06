@@ -114,6 +114,7 @@ async function editTask(req, res) {
         user: req.userId,
       },
       req.body,
+      { $set: { todoList: req.body.todoList } },
       {
         new: true,
         runValidators: true,
