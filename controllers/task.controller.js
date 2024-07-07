@@ -114,7 +114,6 @@ async function editTask(req, res) {
         user: req.userId,
       },
       req.body,
-      { $set: { todoList: req.body.todoList } },
       {
         new: true,
         runValidators: true,
@@ -126,7 +125,6 @@ async function editTask(req, res) {
       );
       return res.status(404).json({ message: "Task not found" });
     }
-
     res.status(200).json(updatedTask);
   } catch (error) {
     console.log(error);
