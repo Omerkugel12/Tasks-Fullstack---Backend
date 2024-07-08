@@ -114,6 +114,7 @@ async function editTask(req, res) {
         user: req.userId,
       },
       req.body,
+
       {
         new: true,
         runValidators: true,
