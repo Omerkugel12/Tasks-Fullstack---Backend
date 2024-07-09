@@ -24,11 +24,13 @@ async function main() {
   const userRoutes = require("./routes/user.route");
   const taskRoutes = require("./routes/task.route");
   const activityRoutes = require("./routes/activity.route");
+  const archiveRoutes = require("./routes/archive.route");
 
   app.use("/api/auth", authRoutes);
   app.use("/api/user", verifyToken, userRoutes);
   app.use("/api/task", verifyToken, taskRoutes);
   app.use("/api/activity", verifyToken, activityRoutes);
+  app.use("/api/archive", verifyToken, archiveRoutes);
 
   // Catch-all route
   app.get("*", (req, res) => {
