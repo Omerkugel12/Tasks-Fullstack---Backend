@@ -9,6 +9,7 @@ const bcrypt = require("bcryptjs");
 
 const Task = require("./models/task.model");
 const User = require("./models/user.model");
+const Activity = require("./models/activity.model");
 
 const SALT_ROUNDS = 10; // Number of rounds to generate salt. 10 is recommended value
 
@@ -221,6 +222,7 @@ async function seedDB() {
     await connectDB(); // Connect to the database
     await Task.deleteMany({});
     await User.deleteMany({});
+    await Activity.deleteMany({});
 
     // const createdUsers = await User.insertMany(users);
     const createdUsers = await Promise.all(

@@ -8,6 +8,9 @@ const userSchema = new mongoose.Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task", default: [] }],
+    activity: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Activity", default: [] },
+    ],
   },
   { timestamps: true }
 );
